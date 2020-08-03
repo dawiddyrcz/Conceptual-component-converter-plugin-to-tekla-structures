@@ -11,7 +11,7 @@ using System.IO;
 
 namespace ConceptualComponentConverter
 {
-    public delegate void ReportProgress(int progressPercentage);
+    public delegate void ReportProgress(string message, int curent = 0, int max = 1);
 
     public class Converter : IConverter
     {
@@ -34,23 +34,36 @@ namespace ConceptualComponentConverter
         public void Run()
         {
             TS.TeklaStructures.Connect();
+
+            int i = 0;
+            ProgressChanged?.Invoke("Getting components from model...");
+
             var tekla = (Teklaa)objectFactory.GetTekla();
             var selectedComponents = tekla.GetSelectedComponents();
+
+            ProgressChanged?.Invoke("Preparing data...");
+            if (cancel) goto END;
 
             CreateFilterFile();
             var componentsToConvert = selectedComponents.Where(c => IsConceptual(c)).ToList();
 
-            int i = 0;
+            ProgressChanged?.Invoke("Starting conversion...");
+            if (cancel) goto END;
+
+            
             int max = componentsToConvert.Count;
             foreach (var component in componentsToConvert)
             {
-                if (cancel) return;
+                if (cancel) goto END;
 
                 ConvertComponent(component);
 
                 i++;
-                ProgressChanged?.Invoke((int)(100.0 * i / max));
+                ProgressChanged?.Invoke("Converting...", i, max);
             }
+
+            END:
+            ProgressChanged?.Invoke($"Converted {i} components");
         }
 
         private bool IsConceptual(TSM.BaseComponent component)

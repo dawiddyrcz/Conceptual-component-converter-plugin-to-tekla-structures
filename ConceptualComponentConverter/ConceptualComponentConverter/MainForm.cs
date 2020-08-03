@@ -63,15 +63,29 @@ namespace ConceptualComponentConverter
             }
         }
 
+        struct ProgressState
+        {
+            public string Message;
+            public int Current;
+            public int Max;
+
+            public ProgressState(string message, int current, int max)
+            {
+                Message = message;
+                Current = current;
+                Max = max;
+            }
+        }
+
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
                 var converter = objectFactory.GetConverter();
 
-                converter.ProgressChanged += (progress) =>
+                converter.ProgressChanged += (string message, int current, int max) =>
                 {
-                    this.backgroundWorker1.ReportProgress(progress);
+                    this.backgroundWorker1.ReportProgress(current, new ProgressState(message, current, max));
 
                     if (this.backgroundWorker1.CancellationPending)
                         converter.Cancel();
@@ -87,10 +101,23 @@ namespace ConceptualComponentConverter
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            var progress = Math.Min(100, e.ProgressPercentage);
-            progress = Math.Max(0, progress);
+            try
+            {
+                var p = (ProgressState)e.UserState;
 
-            this.progressBar1.Value = progress;
+                var progressPercentage = (int)(100.0 * p.Current / p.Max);
+                progressPercentage = Math.Min(100, progressPercentage);
+                progressPercentage = Math.Max(0, progressPercentage);
+
+                this.progressBar1.Value = progressPercentage;
+                this.status_label.Text = p.Message;
+
+                if (p.Max == 1)
+                    this.count_label.Text = string.Empty;
+                else
+                    this.count_label.Text = p.Current + "/" + p.Max;
+            }
+            catch { }
         }
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

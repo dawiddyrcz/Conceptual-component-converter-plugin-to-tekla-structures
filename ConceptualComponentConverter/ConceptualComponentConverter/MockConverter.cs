@@ -17,12 +17,17 @@
 
             for (int i = 0; i < max; i++)
             {
-                if (canceled) break;
+                if (canceled)
+                {
+                    ProgressChanged?.Invoke("Converted " + (i+1) + " items");
+                    return;
+                }
 
-                var progress = (int)100.0*i / max;
-                ProgressChanged?.Invoke(progress+1);
+                ProgressChanged?.Invoke("Converting...", i+1, max);
                 System.Threading.Thread.Sleep(300);
             }
+
+            ProgressChanged?.Invoke("Converted " + max + " items");
         }
 
     }
