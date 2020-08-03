@@ -120,7 +120,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 209);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 212);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(138, 44);
             this.pictureBox1.TabIndex = 6;
@@ -153,7 +153,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 219);
+            this.label1.Location = new System.Drawing.Point(156, 222);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(295, 13);
             this.label1.TabIndex = 9;

@@ -11,7 +11,7 @@
             canceled = true;
         }
 
-        public void Run()
+        public void Run(bool reverse)
         {
             int max = 20;
 

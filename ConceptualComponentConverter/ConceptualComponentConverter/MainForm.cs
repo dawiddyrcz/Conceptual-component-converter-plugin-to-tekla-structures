@@ -93,7 +93,7 @@ namespace ConceptualComponentConverter
                         converter.Cancel();
                 };
                 
-                converter.Run();
+                converter.Run(this.reverse_checkBox.Checked);
             }
             catch (Exception ex)
             {

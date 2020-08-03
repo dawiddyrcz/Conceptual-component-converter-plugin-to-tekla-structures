@@ -4,7 +4,7 @@
     {
         event ReportProgress ProgressChanged;
 
-        void Run();
+        void Run(bool fromConceptualToDetail);
         void Cancel();
     }
 }

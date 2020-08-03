@@ -31,7 +31,7 @@ namespace ConceptualComponentConverter
         }
 
         
-        public void Run()
+        public void Run(bool fromConceptualToDetail = false)
         {
             TS.TeklaStructures.Connect();
 
@@ -45,7 +45,13 @@ namespace ConceptualComponentConverter
             if (cancel) goto END;
 
             CreateFilterFile();
-            var componentsToConvert = selectedComponents.Where(c => IsConceptual(c)).ToList();
+
+            List<TSM.BaseComponent> componentsToConvert;
+
+            if (fromConceptualToDetail)
+                componentsToConvert = selectedComponents.Where(c => !IsConceptual(c)).ToList();
+            else
+                componentsToConvert = selectedComponents.Where(c => IsConceptual(c)).ToList();
 
             ProgressChanged?.Invoke("Starting conversion...");
             if (cancel) goto END;
@@ -69,17 +75,24 @@ namespace ConceptualComponentConverter
             //But components could have children components (components inside component)
             //so we need to convert them too
             findChildrenTask.Wait();
-            var result = findChildrenTask.Result.Where(c => IsConceptual(c)).ToList();
+            var result = findChildrenTask.Result;
 
-            if (result.Count > 0)
+            List<TSM.BaseComponent> childrenToConvert;
+
+            if (fromConceptualToDetail)
+                childrenToConvert = result.Where(c => !IsConceptual(c)).ToList();
+            else
+                childrenToConvert = result.Where(c => IsConceptual(c)).ToList();
+
+            if (childrenToConvert.Count > 0)
             {
-                max = max + result.Count;
+                max += childrenToConvert.Count;
 
                 ProgressChanged?.Invoke("Starting conversion of children components...", i , max);
                 if (cancel) goto END;
 
                 //Converting children objects
-                foreach (var component in result)
+                foreach (var component in childrenToConvert)
                 {
                     if (cancel) goto END;
 
