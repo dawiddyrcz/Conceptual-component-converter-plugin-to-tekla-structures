@@ -1,22 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ConceptualComponentConverter
 {
-    static class Program
+    internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+                if (new Tekla.Structures.Model.Model().GetConnectionStatus())
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+
+                    IntPtr h1 = Tekla.Structures.Dialog.MainWindow.Frame.Handle;
+                    var mainForm = new MainForm();
+                    mainForm.Show(new WindowWrapper(h1));
+                    Application.Run();
+                }
+                else
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+
+                    var mainForm = new MainForm();
+                    mainForm.TopMost = true;
+                    Application.Run(mainForm);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "FATAL_ERROR", MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+
+                try
+                {
+                    File.WriteAllText("log_fatalError.txt",DateTime.Now.ToString() +"\n" + ex.ToString());
+                }
+                catch { }
+            }
         }
+    }
+
+    public class WindowWrapper : System.Windows.Forms.IWin32Window
+    {
+        public WindowWrapper(IntPtr handle)
+        {
+            _hwnd = handle;
+        }
+
+        public IntPtr Handle
+        {
+            get { return _hwnd; }
+        }
+
+        private IntPtr _hwnd;
     }
 }

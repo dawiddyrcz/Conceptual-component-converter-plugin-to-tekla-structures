@@ -18,8 +18,7 @@ namespace ConceptualComponentConverter
         {
             InitializeComponent();
 
-            //objectFactory.MockTekla = true;
-
+            //objectFactory.MockTekla = true;\
         }
 
         private void Start_button_Click(object sender, EventArgs e)
@@ -47,7 +46,6 @@ namespace ConceptualComponentConverter
             }
         }
 
-       
         private void Cancel_button_Click(object sender, EventArgs e)
         {
             try
@@ -135,8 +133,67 @@ namespace ConceptualComponentConverter
             {
                 Debug.WriteLine("ERROR: " + ex.ToString());
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+
+                try
+                {
+                    System.IO.File.WriteAllText("log_error.txt", DateTime.Now.ToString() + "\n" + ex.ToString());
+                }
+                catch { }
             }
         }
 
+
+        //***************************
+        //Pamietaj aby dodac event w designerze
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            if (new Tekla.Structures.Model.Model().GetConnectionStatus())
+            {
+                Tekla.Structures.Dialog.MainWindow.Frame.AddExternalWindow(this.Name, this.Handle);
+                _events = new Tekla.Structures.Model.Events();
+                RegisterEventHandler();
+            }
+
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            if (_events != null)
+            {
+                UnRegisterEventHandler();
+                Tekla.Structures.Dialog.MainWindow.Frame.RemoveExternalWindow(this.Name, this.Handle);
+            }
+            base.OnClosed(e);
+        }
+
+        private Tekla.Structures.Model.Events _events = null;
+        private object _tsExitEventHandlerLock = new object();
+
+        public void RegisterEventHandler()
+        {
+            _events.TeklaStructuresExit += Events_TeklaExitEvent;
+            _events.Register();
+        }
+
+        public void UnRegisterEventHandler()
+        {
+            if (_events != null) _events.UnRegister();
+        }
+
+        void Events_TeklaExitEvent()
+        {
+            /* Make sure that the inner code block is running synchronously */
+            lock (_tsExitEventHandlerLock)
+            {
+                Application.Exit();
+            }
+        }
     }
 }

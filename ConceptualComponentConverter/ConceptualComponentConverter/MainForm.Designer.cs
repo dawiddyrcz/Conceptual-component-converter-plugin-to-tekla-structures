@@ -106,8 +106,9 @@
             this.Controls.Add(this.progressBar1);
             this.MinimumSize = new System.Drawing.Size(400, 250);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conceptual Component Converter";
-            this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
