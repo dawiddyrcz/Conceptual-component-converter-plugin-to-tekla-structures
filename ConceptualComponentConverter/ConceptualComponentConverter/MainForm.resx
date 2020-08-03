@@ -120,4 +120,52 @@
   <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>This program converts conceptual components to detail components by looping Tekla Structures command. Conversion is possible only when Tekla Structures is opened with proper license.
+
+Instruction:
+1. Select component symbols or select parts using "Select components" option
+2. Click "Start"
+3. Wait for result</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsN
+        DhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQU
+        FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAiAHQDASIAAhEBAxEB/8QA
+        HwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIh
+        MUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVW
+        V1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXG
+        x8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQF
+        BgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAV
+        YnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOE
+        hYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq
+        8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9GPselLDHJJ9ngWTO3zY4lJwef4aTydE/572X5Q/4Vh+Kf+PD
+        TP8Atr/MV8jaT+0N461jTLvUIdN0NLK0mhhnmkhmCx+axVST5vTI5+oqa2Ihh7Kd9b/gc1WvCi0pdf0P
+        tXydE/572X5Q/wCFW/7Bs/8AnjH/AN+Y/wD4mvnr4e+MNW1/xB4j0vVJ9JvBpgtjHcaQHCP5quSG3O3I
+        2jp719LVrCaqR5o/1bQ1hNVFzIzv7Bs/+eMf/fmP/wCJo/sGz/54x/8AfmP/AOJrzTxR8bL+TQfHbeDN
+        E/4SPXfDd5HaLZJucyhgm5wi/M21vMG0cnZnNegeB9Y1PX/CGkajrOmNo2q3VsktzYMTmFyOV55H0PI6
+        HmqjJSjzRehUZKWqLf8AYNn/AM8Y/wDvzH/8TR/YNn/zxj/78x//ABNcb8UfGuveF9Q0220OCO4M1ndX
+        c0a6bJfTv5cttGqxRpNHn/j4JJJOAtcTf/FH4iaXZ69NcR6HMNNl1BElsNNkuoNtrF5m6eRLw/Z2k+6E
+        cFgeor0qOBqVoKcZLU8ytmNKhOUJRbt2Wnfue0f2DZ/88Y/+/Mf/AMTR/YNn/wA8Y/8AvzH/APE1o14p
+        4u+NWreHPiBfaRHLpctvbanZ2celLaSvqFzFLFE8jxsJQpIMjADb/CKww+HqYmTjT3Sv/X3nTisVTwkV
+        Ors3b9f0PWv7Bs/+eMf/AH5j/wDiaP7Bs/8AnjH/AN+Y/wD4mvKfCnxm1XxD4/stJkn0uGC51O7s30l7
+        OWPUbaKOGZ0kkYylQSY1B+X+KvZ6WIw9TDSUam7Vx4bFU8XFzp7J2/L/ADM7+wbP/njH/wB+Y/8A4mj+
+        wbP/AJ4x/wDfmP8A+Jrwqb9obxKmnf8ACXJYaG/g4WsuqPpomf8AtRNOjlRPtDNnYHZX8xYtvIUrv3V9
+        DVz6o6zCuLXTreZo2t1LL6QRY6fSimap/wAf8v4fyFFAGP4p/wCPDTP+2v8AMV8v/D/QLHS/g/qPh/U9
+        P1iDUtUWV51/sW8bY5GIxkREcbVPHvX2BdeHIdRtreO5d1aHdjyiMHJ9x7VV/wCEGsP+e1x/30v/AMTW
+        FSkqjUuya+856lLnkpev4nyb+y34b1fw9/wk/wDaml3um+d9l8v7ZbvFvx52du4DOMj8xX174t1a40Lw
+        vquoWlpPf3dvbSSQ2ttEZZJZAp2qqjk5OKqf8INYf89rj/vpf/ia6Kpo0VQoqlF7XCjS9jT9mmfF37LN
+        j448I/FqebWvDGvWtjrcckd3dXOmzJGsmS6uzFQB82Rk/wB6vtGiiow1D6vDkTuFCj7CHJe5478dNFmv
+        vE3hLU4NMe/udLiurmykezvLi3huxPZtGZRaozj5FlIBGCV5rxy6+H+mnw14n03TvBWu21rNe3lxFFqF
+        jqUs8rRwSLYSW5jt1RF3zSZSYkgdSeMfYtFfTYfNJ4enGmk9PO3W+3zPHxWUQxVWVVta/wB1Polv6IK8
+        L8cXXi24+Jwk04akZ9N1O3g0uJtHkewa3mhhFxJJcLGRgEyA/NkY4r3SivOw1dYeTly3ura/18vRnp4r
+        DvEwUFJxs76f18/VI8O8FXXiq3+Jhl1A6iLnUdTmg1SFNHkSwFtDBMIJI7howMFhGB82Tur3GiijEV1i
+        JKXLayt/X5eiHhcO8NBxcnK7vr5/1f1Z84/FD4G+K9PuAnghP7e8Iky303g3VNZa1s/tnmrJGEAhZmhL
+        b2MDSrGWK9AMH0T4NeIPifr39sf8LI8K6X4Z8ryfsH9mXguPPzv83dhmxtxHjpncfSvSqK5ubSx2HP6p
+        /wAf8v4fyFFXL3S5bi5eRWQK2OpOen0ooA1KKKKkAooooAKKKKACiiigAooooAKKKKACiiigAooooA//
+        2Q==
+</value>
+  </data>
 </root>

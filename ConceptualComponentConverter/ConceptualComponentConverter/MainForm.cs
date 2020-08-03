@@ -33,7 +33,11 @@ namespace ConceptualComponentConverter
                     {
                         if (tekla.IsAnyConnectionSelected())
                         {
-                            this.backgroundWorker1.RunWorkerAsync();
+                            var result = MessageBox.Show("Do you want to convert selected components?", "Are you sure?", MessageBoxButtons.YesNo, 
+                                icon: MessageBoxIcon.Question, defaultButton: MessageBoxDefaultButton.Button2);
+
+                            if (result == DialogResult.Yes)
+                                this.backgroundWorker1.RunWorkerAsync();
                         }
                         else throw new MessageException("Nothing is selected");
                     }
@@ -194,6 +198,24 @@ namespace ConceptualComponentConverter
             {
                 Application.Exit();
             }
+        }
+
+        private void license_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/dawiddyrcz/Conceptual-component-converter-plugin-to-tekla-structures/blob/master/LICENSE");
+            }
+            catch { }
+        }
+
+        private void ddbim_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.ddbim.pl/go/fromconceptualcomponentconverterapp/");
+            }
+            catch { }
         }
     }
 }
