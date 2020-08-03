@@ -41,6 +41,7 @@
             this.ddbim_linkLabel = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.reverse_checkBox = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(93, 312);
+            this.progressBar1.Location = new System.Drawing.Point(93, 305);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(298, 24);
             this.progressBar1.TabIndex = 0;
@@ -56,7 +57,7 @@
             // start_button
             // 
             this.start_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.start_button.Location = new System.Drawing.Point(397, 313);
+            this.start_button.Location = new System.Drawing.Point(397, 306);
             this.start_button.Name = "start_button";
             this.start_button.Size = new System.Drawing.Size(75, 23);
             this.start_button.TabIndex = 1;
@@ -67,7 +68,7 @@
             // cancel_button
             // 
             this.cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancel_button.Location = new System.Drawing.Point(12, 313);
+            this.cancel_button.Location = new System.Drawing.Point(12, 306);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 2;
@@ -87,7 +88,7 @@
             // 
             this.status_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.status_label.AutoSize = true;
-            this.status_label.Location = new System.Drawing.Point(15, 292);
+            this.status_label.Location = new System.Drawing.Point(15, 285);
             this.status_label.Name = "status_label";
             this.status_label.Size = new System.Drawing.Size(39, 13);
             this.status_label.TabIndex = 3;
@@ -97,7 +98,7 @@
             // 
             this.count_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.count_label.AutoSize = true;
-            this.count_label.Location = new System.Drawing.Point(401, 292);
+            this.count_label.Location = new System.Drawing.Point(401, 285);
             this.count_label.Name = "count_label";
             this.count_label.Size = new System.Drawing.Size(0, 13);
             this.count_label.TabIndex = 4;
@@ -112,7 +113,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(460, 176);
+            this.textBox1.Size = new System.Drawing.Size(460, 169);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
@@ -120,7 +121,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 212);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 205);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(138, 44);
             this.pictureBox1.TabIndex = 6;
@@ -153,28 +154,38 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 222);
+            this.label1.Location = new System.Drawing.Point(156, 215);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(295, 13);
+            this.label1.Size = new System.Drawing.Size(291, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "<=  This option (Select Components) should be checked";
+            this.label1.Text = "<-  This option (Select Components) should be checked";
             // 
             // reverse_checkBox
             // 
             this.reverse_checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.reverse_checkBox.AutoSize = true;
-            this.reverse_checkBox.Location = new System.Drawing.Point(15, 265);
+            this.reverse_checkBox.Location = new System.Drawing.Point(15, 261);
             this.reverse_checkBox.Name = "reverse_checkBox";
-            this.reverse_checkBox.Size = new System.Drawing.Size(385, 17);
+            this.reverse_checkBox.Size = new System.Drawing.Size(15, 14);
             this.reverse_checkBox.TabIndex = 10;
-            this.reverse_checkBox.Text = "Convert from DETAIL to CONCEPTUAL (working only on proper license)";
             this.reverse_checkBox.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(39, 261);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(384, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "<-  Convert from DETAIL to CONCEPTUAL (working only on proper license)";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 348);
+            this.ClientSize = new System.Drawing.Size(484, 341);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.reverse_checkBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ddbim_linkLabel);
@@ -212,6 +223,7 @@
         private System.Windows.Forms.LinkLabel ddbim_linkLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox reverse_checkBox;
+        private System.Windows.Forms.Label label2;
     }
 }
 
