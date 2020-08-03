@@ -18,7 +18,7 @@ namespace ConceptualComponentConverter
         {
             InitializeComponent();
 
-            objectFactory.MockTekla = true;
+            //objectFactory.MockTekla = true;
 
         }
 

@@ -21,7 +21,7 @@ namespace ConceptualComponentConverter
             if (MockTekla)
                 return new MockTekla();
             else
-                return new Tekla();
+                return new Teklaa();
 
         }
 

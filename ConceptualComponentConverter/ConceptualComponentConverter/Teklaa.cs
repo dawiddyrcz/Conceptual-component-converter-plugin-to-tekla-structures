@@ -5,7 +5,7 @@ using TSM = Tekla.Structures.Model;
 
 namespace ConceptualComponentConverter
 {
-    public class Tekla : ITekla
+    public class Teklaa : ITekla
     {
         public bool IsRunning()
         {
@@ -32,10 +32,10 @@ namespace ConceptualComponentConverter
             return false;
         }
 
-        internal Dictionary<Guid, TSM.BaseComponent> GetSelectedComponents()
+        internal List<TSM.BaseComponent> GetSelectedComponents()
         {
             var selector = new TSM.UI.ModelObjectSelector();
-            return selector.GetSelectedObjects().ToDictionaryGuid<TSM.BaseComponent>(true);
+            return selector.GetSelectedObjects().ToList<TSM.BaseComponent>(true);
         }
     }
 }
