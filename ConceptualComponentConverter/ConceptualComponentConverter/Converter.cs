@@ -35,7 +35,7 @@ namespace ConceptualComponentConverter
         {
             TS.TeklaStructures.Connect();
 
-            int i = 0;
+            int i = 0, max = 0;
             ProgressChanged?.Invoke("Getting components from model...");
 
             var tekla = (Teklaa)objectFactory.GetTekla();
@@ -50,25 +50,105 @@ namespace ConceptualComponentConverter
             ProgressChanged?.Invoke("Starting conversion...");
             if (cancel) goto END;
 
-            
-            int max = componentsToConvert.Count;
+            var findChildrenTask = new Task<List<TSM.BaseComponent>>(() => GetChildrenComponents(selectedComponents));
+            findChildrenTask.Start();
+
+            //Main loop where we convert components
+            max = componentsToConvert.Count;
             foreach (var component in componentsToConvert)
             {
                 if (cancel) goto END;
 
                 ConvertComponent(component);
 
-                i++;
-                ProgressChanged?.Invoke("Converting...", i, max);
+                ProgressChanged?.Invoke("Converting...", ++i, max);
+            }
+
+            ProgressChanged?.Invoke("Converted", i, max);
+
+            //But components could have children components (components inside component)
+            //so we need to convert them too
+            findChildrenTask.Wait();
+            var result = findChildrenTask.Result.Where(c => IsConceptual(c)).ToList();
+
+            if (result.Count > 0)
+            {
+                max = max + result.Count;
+
+                ProgressChanged?.Invoke("Starting conversion of children components...", i , max);
+                if (cancel) goto END;
+
+                //Converting children objects
+                foreach (var component in result)
+                {
+                    if (cancel) goto END;
+
+                    ConvertComponent(component);
+
+                    ProgressChanged?.Invoke("Converting children components...", ++i, max);
+                }
             }
 
             END:
-            ProgressChanged?.Invoke($"Converted {i} components");
+            ProgressChanged?.Invoke($"Converted {i}/{max} components");
         }
 
         private bool IsConceptual(TSM.BaseComponent component)
         {
             return TSM.Operations.Operation.ObjectMatchesToFilter(component, "_isConceptual__");
+        }
+
+        private void ConvertComponent(TSM.BaseComponent component)
+        {
+            //Update component from database
+            component.Select();
+            component.GetPhase(out TSM.Phase phase);
+
+            //Check if is connection
+            TSM.Connection connetion = null;
+            TSM.Detail detail = null;
+            T3D.Vector upVector = null;
+
+            if (component is TSM.Connection)
+            {
+                connetion = component as TSM.Connection;
+                upVector = connetion.UpVector;
+            }
+            else if (component is TSM.Detail)
+            {
+                detail = component as TSM.Detail;
+                upVector = detail.UpVector;
+            }
+
+            //Select component in model
+            new TSM.UI.ModelObjectSelector().Select(new System.Collections.ArrayList() { component });
+
+            //Convert component
+            var akit = new TS.MacroBuilder();
+            akit.Callback("acmdChangeJointTypeToCallback", "DETAIL", "main_frame");
+            akit.Run();
+
+            component.Select();
+
+            //After conversion some connections changes its direction so we need to repair that connections
+            if (connetion != null)
+            {
+                connetion.Select();
+                connetion.AutoDirectionType = TS.AutoDirectionTypeEnum.AUTODIR_NA;
+                connetion.UpVector = upVector;
+            }
+
+            //After conversion some details changes its direction so we need to repair that details
+            if (detail != null)
+            {
+                detail.Select();
+                detail.AutoDirectionType = TS.AutoDirectionTypeEnum.AUTODIR_NA;
+                detail.UpVector = upVector;
+            }
+
+            //After conversion components change its phase to current we need to repait it
+            component.SetPhase(phase);
+            component.Modify();
         }
 
         private void CreateFilterFile()
@@ -100,57 +180,18 @@ namespace ConceptualComponentConverter
             File.WriteAllText(filePath, filterText);
         }
 
-        private void ConvertComponent(TSM.BaseComponent component)
+
+        private List<TSM.BaseComponent> GetChildrenComponents(List<TSM.BaseComponent> components)
         {
-            //Update component from database
-            component.Select();
-            component.GetPhase(out TSM.Phase phase);
+            var output = new List<TSM.BaseComponent>(100);
 
-            //Check if is connection
-            TSM.Connection connetion = null;
-            TSM.Detail detail = null;
-            T3D.Vector upVector = null;
-
-            if (component is TSM.Connection)
+            foreach (var component in components)
             {
-                connetion = component as TSM.Connection;
-                upVector = connetion.UpVector;
-            }
-            else if (component is TSM.Detail)
-            {
-                detail = component as TSM.Detail;
-                upVector = detail.UpVector;
+                var children = component.GetChildren().ToList<TSM.BaseComponent>();
+                output.AddRange(children);
             }
 
-            //Select component in model
-            new TSM.UI.ModelObjectSelector().Select(new System.Collections.ArrayList(){ component });
-
-            //Convert component
-            var akit = new TS.MacroBuilder();
-            akit.Callback("acmdChangeJointTypeToCallback", "DETAIL", "main_frame");
-            akit.Run();
-
-            component.Select();
-
-            //After conversion some connections changes its direction so we need to repair that connections
-            if (connetion != null)
-            {
-                connetion.Select();
-                connetion.AutoDirectionType = TS.AutoDirectionTypeEnum.AUTODIR_NA;
-                connetion.UpVector = upVector;
-            }
-
-            //After conversion some details changes its direction so we need to repair that details
-            if (detail != null)
-            {
-                detail.Select();
-                detail.AutoDirectionType = TS.AutoDirectionTypeEnum.AUTODIR_NA;
-                detail.UpVector = upVector;
-            }
-
-            //After conversion components change its phase to current we need to repait it
-            component.SetPhase(phase);
-            component.Modify();
+            return output;
         }
     }
 }

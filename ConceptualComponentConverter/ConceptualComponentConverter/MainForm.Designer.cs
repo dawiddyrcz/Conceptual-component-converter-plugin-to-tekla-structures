@@ -40,15 +40,15 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(93, 172);
+            this.progressBar1.Location = new System.Drawing.Point(93, 175);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(180, 24);
+            this.progressBar1.Size = new System.Drawing.Size(198, 24);
             this.progressBar1.TabIndex = 0;
             // 
             // start_button
             // 
             this.start_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.start_button.Location = new System.Drawing.Point(279, 173);
+            this.start_button.Location = new System.Drawing.Point(297, 176);
             this.start_button.Name = "start_button";
             this.start_button.Size = new System.Drawing.Size(75, 23);
             this.start_button.TabIndex = 1;
@@ -59,7 +59,7 @@
             // cancel_button
             // 
             this.cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancel_button.Location = new System.Drawing.Point(12, 173);
+            this.cancel_button.Location = new System.Drawing.Point(12, 176);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             this.status_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.status_label.AutoSize = true;
-            this.status_label.Location = new System.Drawing.Point(15, 152);
+            this.status_label.Location = new System.Drawing.Point(15, 155);
             this.status_label.Name = "status_label";
             this.status_label.Size = new System.Drawing.Size(37, 13);
             this.status_label.TabIndex = 3;
@@ -89,24 +89,24 @@
             // 
             this.count_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.count_label.AutoSize = true;
-            this.count_label.Location = new System.Drawing.Point(317, 152);
+            this.count_label.Location = new System.Drawing.Point(301, 155);
             this.count_label.Name = "count_label";
             this.count_label.Size = new System.Drawing.Size(0, 13);
             this.count_label.TabIndex = 4;
-            this.count_label.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 208);
+            this.ClientSize = new System.Drawing.Size(384, 211);
             this.Controls.Add(this.count_label);
             this.Controls.Add(this.status_label);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.start_button);
             this.Controls.Add(this.progressBar1);
+            this.MinimumSize = new System.Drawing.Size(400, 250);
             this.Name = "MainForm";
-            this.Text = "Coneptual Component Converter";
+            this.Text = "Conceptual Component Converter";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
