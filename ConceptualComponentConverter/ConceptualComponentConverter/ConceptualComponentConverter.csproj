@@ -135,6 +135,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="_isConceptual__.SObjGrp" />
+    <None Include="_isNotConceptual__.SObjGrp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

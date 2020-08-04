@@ -31,7 +31,7 @@ namespace ConceptualComponentConverter
         }
 
         
-        public void Run(bool fromConceptualToDetail = false)
+        public void Run(bool fromDetailToConceptual = false)
         {
             TS.TeklaStructures.Connect();
 
@@ -44,12 +44,12 @@ namespace ConceptualComponentConverter
             ProgressChanged?.Invoke("Preparing data...");
             if (cancel) goto END;
 
-            CreateFilterFile();
+            CreateConceptualFilterFile();
 
             List<TSM.BaseComponent> componentsToConvert;
 
-            if (fromConceptualToDetail)
-                componentsToConvert = selectedComponents.Where(c => !IsConceptual(c)).ToList();
+            if (fromDetailToConceptual)
+                componentsToConvert = selectedComponents.Where(c => IsNotConceptual(c)).ToList();
             else
                 componentsToConvert = selectedComponents.Where(c => IsConceptual(c)).ToList();
 
@@ -79,8 +79,8 @@ namespace ConceptualComponentConverter
 
             List<TSM.BaseComponent> childrenToConvert;
 
-            if (fromConceptualToDetail)
-                childrenToConvert = result.Where(c => !IsConceptual(c)).ToList();
+            if (fromDetailToConceptual)
+                childrenToConvert = result.Where(c => IsNotConceptual(c)).ToList();
             else
                 childrenToConvert = result.Where(c => IsConceptual(c)).ToList();
 
@@ -109,6 +109,11 @@ namespace ConceptualComponentConverter
         private bool IsConceptual(TSM.BaseComponent component)
         {
             return TSM.Operations.Operation.ObjectMatchesToFilter(component, "_isConceptual__");
+        }
+
+        private bool IsNotConceptual(TSM.BaseComponent component)
+        {
+            return TSM.Operations.Operation.ObjectMatchesToFilter(component, "_isNotConceptual__");
         }
 
         private void ConvertComponent(TSM.BaseComponent component)
@@ -164,7 +169,7 @@ namespace ConceptualComponentConverter
             component.Modify();
         }
 
-        private void CreateFilterFile()
+        private void CreateConceptualFilterFile()
         {
             var filterText = @"TITLE_OBJECT_GROUP 
 {
@@ -190,6 +195,35 @@ namespace ConceptualComponentConverter
             var attributesPath = System.IO.Path.Combine(modelPath, "attributes");
             var filePath = System.IO.Path.Combine(attributesPath, "_isConceptual__.SObjGrp");
             
+            File.WriteAllText(filePath, filterText);
+        }
+
+        private void CreateNotConceptualFilterFile()
+        {
+            var filterText = @"TITLE_OBJECT_GROUP 
+{
+    Version= 1.05 
+    Count= 1 
+    SECTION_OBJECT_GROUP 
+    {
+        0 
+        1 
+        co_component 
+        proIsConceptual 
+        albl_Is_conceptual 
+        == 
+        albl_Equals 
+        albl_No 
+        0 
+        && 
+        }
+    }
+";
+
+            var modelPath = new TSM.Model().GetInfo().ModelPath;
+            var attributesPath = System.IO.Path.Combine(modelPath, "attributes");
+            var filePath = System.IO.Path.Combine(attributesPath, "_isNotConceptual__.SObjGrp");
+
             File.WriteAllText(filePath, filterText);
         }
 
