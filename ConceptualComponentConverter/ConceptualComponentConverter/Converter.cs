@@ -45,6 +45,7 @@ namespace ConceptualComponentConverter
             if (cancel) goto END;
 
             CreateConceptualFilterFile();
+            CreateNotConceptualFilterFile();
 
             List<TSM.BaseComponent> componentsToConvert;
 
