@@ -30,12 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // ConceptualComponentConverterPluginClassForm
+            // ConceptualComponentConverterPlugin_DummyForm
             // 
+            this.structuresExtender.SetAttributeName(this, null);
+            this.structuresExtender.SetAttributeTypeName(this, null);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(198, 104);
-            this.Name = "ConceptualComponentConverterPluginClassForm";
+            this.structuresExtender.SetBindPropertyName(this, null);
+            this.ClientSize = new System.Drawing.Size(124, 44);
+            this.Name = "ConceptualComponentConverterPlugin_DummyForm";
             this.Text = "ConceptualComponentConverterPluginClassForm";
             this.ResumeLayout(false);
 

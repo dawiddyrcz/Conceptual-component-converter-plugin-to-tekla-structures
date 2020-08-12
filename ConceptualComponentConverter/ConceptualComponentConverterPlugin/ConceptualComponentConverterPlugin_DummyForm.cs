@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Tekla.Structures.Dialog;
@@ -8,13 +7,12 @@ namespace ConceptualComponentConverterPlugin
 {
     public partial class ConceptualComponentConverterPlugin_DummyForm : PluginFormBase
     {
-        private readonly string _appName = "ConceptualComponentConverter.exe";
-        private readonly string _appDirectory = System.IO.Path.Combine("applications","Tekla", "Model" , "ConceptualComponentConverter");
-
+        private readonly string _appFileName = "ConceptualComponentConverter.exe";
+       
         public ConceptualComponentConverterPlugin_DummyForm()
         {
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.Opacity = 0;
+            //this.FormBorderStyle = FormBorderStyle.None;
+            //this.Opacity = 0;
 
             this.Shown += ConceptualComponentConverterPlugin_DummyForm_Shown;
             InitializeComponent();
@@ -24,13 +22,18 @@ namespace ConceptualComponentConverterPlugin
         {
             Invoke(new Action(() =>
             {
-                this.Close();
+                try
+                {
+                    System.Threading.Thread.Sleep(50);
+                    this.Close();
+                }
+                catch { }
             }
            ));
 
         }
 
-        
+
 
         protected override void OnLoad(EventArgs e)
         {
@@ -41,8 +44,15 @@ namespace ConceptualComponentConverterPlugin
 
                 CloseAllProcesses();
 
+                var assemblyFile = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                var assemlbyDirectory = Path.GetDirectoryName(assemblyFile);
+
                 var teklaBinDir = Tekla.Structures.Dialog.StructuresInstallation.BinFolder;
-                var appFullPath = System.IO.Path.Combine(teklaBinDir, _appDirectory, _appName);
+                var appFullPath = System.IO.Path.Combine(
+                    assemlbyDirectory
+                    , _appFileName);
+                
+                Tekla.Structures.Model.Operations.Operation.DisplayPrompt(DateTime.Now.ToString("HH:mm:ss.fff") + " Trying to start application: " + appFullPath);
 
                 System.Diagnostics.Process.Start(appFullPath);
 
@@ -59,7 +69,7 @@ namespace ConceptualComponentConverterPlugin
 
         private void CloseAllProcesses()
         {
-            var processName = Path.GetFileNameWithoutExtension(_appName);
+            var processName = Path.GetFileNameWithoutExtension(_appFileName);
             var processes = System.Diagnostics.Process.GetProcessesByName(processName);
 
             if (processes != null)
