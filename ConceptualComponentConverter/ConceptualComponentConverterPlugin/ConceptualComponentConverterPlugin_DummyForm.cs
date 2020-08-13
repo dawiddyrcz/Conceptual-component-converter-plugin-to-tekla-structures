@@ -11,9 +11,6 @@ namespace ConceptualComponentConverterPlugin
        
         public ConceptualComponentConverterPlugin_DummyForm()
         {
-            //this.FormBorderStyle = FormBorderStyle.None;
-            //this.Opacity = 0;
-
             this.Shown += ConceptualComponentConverterPlugin_DummyForm_Shown;
             InitializeComponent();
         }
@@ -32,8 +29,6 @@ namespace ConceptualComponentConverterPlugin
            ));
 
         }
-
-
 
         protected override void OnLoad(EventArgs e)
         {

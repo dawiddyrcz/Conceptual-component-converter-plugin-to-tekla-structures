@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.reverse_checkBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.newVersion_linkLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,7 +138,7 @@
             this.license_linkLabel.TabIndex = 7;
             this.license_linkLabel.TabStop = true;
             this.license_linkLabel.Text = "License MIT";
-            this.license_linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.license_linkLabel_LinkClicked);
+            this.license_linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.License_linkLabel_LinkClicked);
             // 
             // ddbim_linkLabel
             // 
@@ -148,7 +149,7 @@
             this.ddbim_linkLabel.TabIndex = 8;
             this.ddbim_linkLabel.TabStop = true;
             this.ddbim_linkLabel.Text = "www.ddbim.pl";
-            this.ddbim_linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ddbim_linkLabel_LinkClicked);
+            this.ddbim_linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Ddbim_linkLabel_LinkClicked);
             // 
             // label1
             // 
@@ -180,11 +181,24 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "<-  Convert from DETAIL to CONCEPTUAL (working only on proper license)";
             // 
+            // newVersion_linkLabel
+            // 
+            this.newVersion_linkLabel.AutoSize = true;
+            this.newVersion_linkLabel.Location = new System.Drawing.Point(165, 7);
+            this.newVersion_linkLabel.Name = "newVersion_linkLabel";
+            this.newVersion_linkLabel.Size = new System.Drawing.Size(126, 13);
+            this.newVersion_linkLabel.TabIndex = 12;
+            this.newVersion_linkLabel.TabStop = true;
+            this.newVersion_linkLabel.Text = "New version is avaiable";
+            this.newVersion_linkLabel.Visible = false;
+            this.newVersion_linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.NewVersion_linkLabel_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 341);
+            this.Controls.Add(this.newVersion_linkLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.reverse_checkBox);
             this.Controls.Add(this.label1);
@@ -225,6 +239,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox reverse_checkBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.LinkLabel newVersion_linkLabel;
     }
 }
 

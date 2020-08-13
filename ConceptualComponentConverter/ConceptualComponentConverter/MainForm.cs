@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,10 +12,15 @@ namespace ConceptualComponentConverter
         public MainForm()
         {
             InitializeComponent();
+            this.Shown += MainForm_Shown;
+
+            var currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            this.Text += $" {currentVersion.Major}.{currentVersion.Minor}";
 
             //objectFactory.MockTekla = true;\
         }
 
+       
         private void Start_button_Click(object sender, EventArgs e)
         {
             try
@@ -148,7 +148,7 @@ namespace ConceptualComponentConverter
 
 
         //***************************
-        //Pamietaj aby dodac event w designerze
+        //Add event to designer
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -200,7 +200,7 @@ namespace ConceptualComponentConverter
             }
         }
 
-        private void license_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void License_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
@@ -209,11 +209,71 @@ namespace ConceptualComponentConverter
             catch { }
         }
 
-        private void ddbim_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void Ddbim_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
                 System.Diagnostics.Process.Start("https://www.ddbim.pl/go/fromconceptualcomponentconverterapp/");
+            }
+            catch { }
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            Task.Factory.StartNew(() =>
+
+            {
+                System.Threading.Thread.Sleep(1000);
+
+                if (NewVersionIsAvaiable())
+                {
+                    Invoke(new MethodInvoker(() => this.newVersion_linkLabel.Visible = true));
+                }
+
+            });
+        }
+
+        private bool NewVersionIsAvaiable()
+        {
+            try
+            {
+                string url = "https://raw.githubusercontent.com/dawiddyrcz/Conceptual-component-converter-plugin-to-tekla-structures/master/VERSION";
+
+                string fileContent;
+                using (var wc = new System.Net.WebClient())
+                    fileContent = wc.DownloadString(url);
+
+                var text = fileContent.Trim();
+                var splited = text.Split('.');
+
+                if (splited.Length >= 2)
+                {
+                    if (int.TryParse(splited[0], out int major) && int.TryParse(splited[1], out int minor))
+                    {
+                        var currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+
+                        if (major > currentVersion.Major) return true;
+                        else if (major == currentVersion.Major)
+                        {
+                            if (minor > currentVersion.Minor) return true;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        private void NewVersion_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.ddbim.pl/go/newversionconceptualcomponentconverter/");
             }
             catch { }
         }
