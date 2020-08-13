@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TEP Version="1.0">
+
+	<Product Id="ConceptualComponentConverter" UpgradeCode="6F5B05B6-5507-4AF4-AB94-3F55ACAF339C" Version="1.0" Language="1033"
+		Name="Conceptual Component Converter Extension" Manufacturer="Dawid Dyrcz"  Description= "This extension converts all selected components from conceptual to detail."
+		IconPath="%TEPDEFINITIONFILEFOLDER%\Icon.png">
+		<TeklaVersions>
+			<TeklaVersion Name="2099.1"/>
+			<MinTeklaVersion Name="2016.0"/>
+			<MaxTeklaVersion Name="2099.1"/>
+		</TeklaVersions>
+	</Product>
+	 
+	<SourcePathVariables>
+		<SourcePathVariable Id="TepOutputFolder" Value="%TEPDEFINITIONFILEFOLDER%\output" Comment="This provides the location where the package builder is to save the package."/>
+		<SourcePathVariable Id="BinariesFolder" Value="%TEPDEFINITIONFILEFOLDER%\..\bin\Release"/>
+		<SourcePathVariable Id="StandardFileFolder" Value="%TEPDEFINITIONFILEFOLDER%"/>
+		<SourcePathVariable Id="MessagesFolder" Value="%TEPDEFINITIONFILEFOLDER%"/>
+		<SourcePathVariable Id="BitmapsFolder" Value="%TEPDEFINITIONFILEFOLDER%"/>
+    </SourcePathVariables>
+
+	<TargetPathVariables>
+		<PathVariable Id="ModelPluginsDirectory" Value="%ENVDIR%\extensions\plugins\tekla\model\"/>
+		<PathVariable Id="ModelApplicationsDirectory" Value="%ENVDIR%\extensions\applications\tekla\model\"/>
+		<PathVariable Id="ExtensionsDir" Value="%commonEnvFolder%\extensions\"/>
+		<PathVariable Id="BinariesTargetDirectory" Value="%ExtensionsDir%\ConceptualComponentConverter\"/>
+		<PathVariable Id="BitmapsDirectory" Value="%ENVDIR%\..\bitmaps\"/>
+		<PathVariable Id="AttributeFileDirectory" Value="%commonEnvFolder%\system\"/>
+		<PathVariable Id="CommonMacroDirectory" Value="%commonEnvFolder%\macros\modeling\"/>
+	</TargetPathVariables>
+
+	<Component Id="TheExtensionComponent" Guid="73CBA9CC-4527-4E59-A5C1-575E7A4ABA96">
+		<File Id="Icon" Source="%BitmapsFolder%\et_element_Conceptual Component Converter.bmp" Target="%BitmapsDirectory%"/>
+    <File Id="ConceptualComponentConverter.exe" Source="%BinariesFolder%\ConceptualComponentConverter.exe" Target="%BinariesTargetDirectory%"/>
+    <File Id="ConceptualComponentConverterPlugin.dll" Source="%BinariesFolder%\ConceptualComponentConverterPlugin.dll" Target="%BinariesTargetDirectory%"/>
+		<File Id="ConceptualComponentConverter_ComponentCatalog.ac.xml" Source="%StandardFileFolder%\ConceptualComponentConverter_ComponentCatalog.ac.xml" Target="%AttributeFileDirectory%"/>
+	</Component>
+
+	<Feature Id="TheExtensionFeature" Title="ExtensionFeature">
+		<ComponentRef ReferenceId="TheExtensionComponent" />
+	</Feature>
+
+ </TEP>

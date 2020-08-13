@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ConceptualComponentConverterPlugin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is extension to Tekla Structures. This extension converts all selected components from conceptual to detail.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DDBIM")]
 [assembly: AssemblyProduct("ConceptualComponentConverterPlugin")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright © Dawid Dyrcz 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

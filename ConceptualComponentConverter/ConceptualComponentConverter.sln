@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptualComponentConverte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptualComponentConverterPlugin", "ConceptualComponentConverterPlugin\ConceptualComponentConverterPlugin.csproj", "{2DDD0CE3-14C8-478E-ABDE-4B41F587FF65}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_TSEP", "_TSEP", "{0DC160C9-B23D-4886-B726-28BB7E488683}"
+	ProjectSection(SolutionItems) = preProject
+		_TSEP\ConceptualComponentConverter_ComponentCatalog.ac.xml = _TSEP\ConceptualComponentConverter_ComponentCatalog.ac.xml
+		_TSEP\et_element_Conceptual Component Converter.bmp = _TSEP\et_element_Conceptual Component Converter.bmp
+		_TSEP\Icon.png = _TSEP\Icon.png
+		_TSEP\TsepDefinition.xml = _TSEP\TsepDefinition.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
