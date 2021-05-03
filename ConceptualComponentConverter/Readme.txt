@@ -1,0 +1,1 @@
+I build all in release mode

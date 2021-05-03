@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ConceptualComponentConverterPlugin")]
-[assembly: AssemblyDescription("This is extension to Tekla Structures. This extension converts all selected components from conceptual to detail.")]
+[assembly: AssemblyTitle("ConceptualCompConv_Installer")]
+[assembly: AssemblyDescription("This assembly is an installer class which copy files to Tekla Structures Directories")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DDBIM")]
-[assembly: AssemblyProduct("ConceptualComponentConverterPlugin")]
-[assembly: AssemblyCopyright("Copyright © Dawid Dyrcz 2020")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ConceptualCompConv_Installer")]
+[assembly: AssemblyCopyright("Copyright © Dawid Dyrcz 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2ddd0ce3-14c8-478e-abde-4b41f587ff65")]
+[assembly: Guid("c47ecb73-a8a3-43e6-bc0c-ff4d82938817")]
 
 // Version information for an assembly consists of the following four values:
 //

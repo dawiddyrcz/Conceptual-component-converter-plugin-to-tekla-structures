@@ -15,6 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_TSEP", "_TSEP", "{0DC160C9
 		_TSEP\TsepDefinition.xml = _TSEP\TsepDefinition.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptualCompConv_Installer", "ConceptualCompConv_Installer\ConceptualCompConv_Installer.csproj", "{C47ECB73-A8A3-43E6-BC0C-FF4D82938817}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ConceptualComponentConverter_Setup", "ConceptualComponentConverter_Setup\ConceptualComponentConverter_Setup.vdproj", "{177F78A8-5A0F-4A85-9B38-675030525EC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{B94C56AA-8F4B-488E-9BF1-DF799539651E}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.txt = Readme.txt
+		SignAssemblies.bat = SignAssemblies.bat
+		SignSetup.bat = SignSetup.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +40,12 @@ Global
 		{2DDD0CE3-14C8-478E-ABDE-4B41F587FF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DDD0CE3-14C8-478E-ABDE-4B41F587FF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DDD0CE3-14C8-478E-ABDE-4B41F587FF65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47ECB73-A8A3-43E6-BC0C-FF4D82938817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47ECB73-A8A3-43E6-BC0C-FF4D82938817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47ECB73-A8A3-43E6-BC0C-FF4D82938817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47ECB73-A8A3-43E6-BC0C-FF4D82938817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{177F78A8-5A0F-4A85-9B38-675030525EC9}.Debug|Any CPU.ActiveCfg = Release
+		{177F78A8-5A0F-4A85-9B38-675030525EC9}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
